@@ -1,0 +1,22 @@
+function FileRead(filename)
+	local file = io.open('00Data/' .. filename .. '.json', "r");
+	local json = file:read("*a");
+	file:close();
+	return json;
+end
+
+local json = require "02Module.json";
+local file = FileRead('station');
+local station = json.decode(file);
+nodes = {}
+for i, w in ipairs(station.Station) do
+	nodes[#nodes+1] = {id = i, weight = w.vehicle_limit, stime = w.loading_time}
+end
+
+file = FileRead();
+local js = json.decode(file);
+vehicle = {}
+for i, w in ipairs(station.Station) do
+	nodes[#nodes+1] = {id = i, weight = w.vehicle_limit, stime = w.loading_time}
+end
+
